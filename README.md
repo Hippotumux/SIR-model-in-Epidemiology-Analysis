@@ -1,6 +1,5 @@
 # -SIR-model-in-Epidemiology-Analysis
 
-{%hackmd @hipp0/Hippotumuxthem %}
 
 # SIR model 
 
