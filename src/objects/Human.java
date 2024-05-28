@@ -72,40 +72,40 @@ public class Human {
 			infect_map[_posX][_posY]++;
 		}
 		
-		// 確認是否在城市中
-		if (_status != 0) {
+		// 確認從通道出來到城市中
+		if (_is_in_hole != 0) {
 			// 假設三個城市 1 2 3 
 			if (map[_posX][_posY] == 1) {
 				_in_city = 1;
-				_status = 0;
+				_is_in_hole = 0;
 			} else if (map[_posX][_posY] == 2) {
 				_in_city = 2;
-				_status = 0;
+				_is_in_hole = 0;
 			} else if (map[_posX][_posY] == 3) {
 				_in_city = 3;
-				_status = 0;
+				_is_in_hole = 0;
 			}
 		}
 		
 		// 確認是否在橋上
 		// 假設三個橋分別為 4(垂直) 5(左右)
-		if (_status == 0) {
+		if (_is_in_hole == 0) {
 			if (map[_posX][_posY] == 4 && _in_city == 1) {
-				_status = 4;
+				_is_in_hole = 4;
 			} else if (map[_posX][_posY] == 4 && _in_city == 2) {
-				_status = 3;
+				_is_in_hole = 3;
 			} else if (map[_posX][_posY] == 4 && _in_city == 3) {
-				_status = 4;
+				_is_in_hole = 4;
 			} else if (map[_posX][_posY] == 5 && _in_city == 1) {
-				_status = 2;
+				_is_in_hole = 2;
 			} else if (map[_posX][_posY] == 5 && _in_city == 3) {
-				_status = 1;
+				_is_in_hole = 1;
 			} 
 		}
 	}
 	
 	// 確認碰撞(需要傳感染者地圖位置)
-	public void check_contact() {
+	public void check_contact(放 array List, int[][]infect_map) {
 		//(因為還沒有 map 所以先隨便設定)
 		int[][] map = new int[900][600];
 		if (map[_posX][_posY] >= 1) {
@@ -119,27 +119,31 @@ public class Human {
 			
 			if (infect_prob <= infect_rate_target) {
 				_status = 1;
+				infect_map[_posX][_posY]++;
 				// 調整感染 arrayList 
 			}
 		}
 	}
 	
 	// 康復
-	public void check_recover() {
+	public void check_recover(int[][] infect_map) {
 		Random random_recover = new Random();
 		int recover_prob = random_recover.nextInt(100);
 		if (recover_prob <= _recover_rate) {
 			_status = 2;
 			// 移除 arrayList
+			infect_map[_posX][_posY] --;
 		}
 	}
 	
 	// 死亡
-	public void check_death() {
+	public void check_death(int[][] infect_map) {
 		Random random_death = new Random();
 		int death_prob = random_death.nextInt(100);
 		if (death_prob <= _death_rate) {
 			_status = 3;
 		}
+		infect_map[_posX][_posY] --;
+		// 移除 arrayList
 	}
 }
