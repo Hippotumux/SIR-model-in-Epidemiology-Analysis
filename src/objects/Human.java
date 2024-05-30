@@ -8,8 +8,8 @@ public class Human {
 	private int _is_in_hole; // 0 沒有,  ,1 左邊 ,2 右邊 ,3 上面, 4 下面
 	private int _in_city; // 0 沒有在城市, 1 大城市, 2 小城市, 3鄉村
 	
-	// 初始化位置 角度 步數 感染率 再感染率 康復綠 死亡率
-	public void init(int x, int y, int infect_rate, int double_infect_rate, int recover_rate, int death_rate) {
+	// 初始化位置 x y 步數 感染率 再感染率 康復綠 死亡率 目前狀況
+	public void init(int x, int y, int infect_rate, int double_infect_rate, int recover_rate, int death_rate, int status) {
 		_posX = x;
 		_posY = y;
 		_infect_rate = infect_rate;
@@ -19,6 +19,7 @@ public class Human {
 		_theta = 0;
 		_movedistance = 50;
 		_is_in_hole = 0;
+		_status = status;
 	}
 	
 	// 走路 (需要傳地圖狀態，感染者位置)
@@ -105,7 +106,7 @@ public class Human {
 	}
 	
 	// 確認碰撞(需要傳感染者地圖位置)
-	public void check_contact(放 array List, int[][]infect_map) {
+	public boolean check_contact(int[][]infect_map) {
 		//(因為還沒有 map 所以先隨便設定)
 		int[][] map = new int[900][600];
 		if (map[_posX][_posY] >= 1) {
@@ -120,30 +121,45 @@ public class Human {
 			if (infect_prob <= infect_rate_target) {
 				_status = 1;
 				infect_map[_posX][_posY]++;
-				// 調整感染 arrayList 
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	// 康復
-	public void check_recover(int[][] infect_map) {
+	public boolean check_recover(int[][] infect_map) {
 		Random random_recover = new Random();
 		int recover_prob = random_recover.nextInt(100);
 		if (recover_prob <= _recover_rate) {
 			_status = 2;
-			// 移除 arrayList
 			infect_map[_posX][_posY] --;
+			return true;
 		}
+		return false;
 	}
 	
 	// 死亡
-	public void check_death(int[][] infect_map) {
+	public boolean check_death(int[][] infect_map) {
 		Random random_death = new Random();
 		int death_prob = random_death.nextInt(100);
 		if (death_prob <= _death_rate) {
 			_status = 3;
+			infect_map[_posX][_posY] --;
+			return true;
 		}
-		infect_map[_posX][_posY] --;
-		// 移除 arrayList
+		return false;
+	}
+	
+	public int get_status() {
+		return _status;
+	}
+	
+	public int get_x() {
+		return _posX;
+	}
+	
+	public int get_y() {
+		return _posY;
 	}
 }

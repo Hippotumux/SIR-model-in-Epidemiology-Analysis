@@ -1,6 +1,5 @@
 package windows;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -27,7 +26,7 @@ public class Map{
             }
         }
 
-        // 繪製不同的區域
+        // 繪製不同的區域 A
         for (int x = 0; x < 500; x++) {
             for (int y = 0; y < 300; y++) {
                 if (x < bl || y < bl || x >= 500 - bl || y >= 300 - bl) map[x][y] = 0;
@@ -43,6 +42,8 @@ public class Map{
                 if (y < 300 + bl && x >= bl && x < 300 - bl) map[x][y] = 1;
             }
         }
+        
+        // B
 
         for (int x = 700; x < 900; x++) {
             for (int y = 50; y < 300; y++) {
@@ -102,5 +103,19 @@ public class Map{
                 else pixelWriter.setColor(x, y, Color.WHITE);
             }
         }
+    }
+    
+    public void plotpeople(int[][] human_map) {
+        // 根據地圖數據繪製顏色
+        for (int x = 0; x < 900; x++) {
+            for (int y = 0; y < 600; y++) {
+                if (human_map[x][y] == 1) pixelWriter.setColor(x, y, Color.GREEN);
+                else if (human_map[x][y] == 2) pixelWriter.setColor(x,  y, Color.RED);
+            }
+        }
+    }
+    
+    public int[][] getmap() {
+    	return map;
     }
 }

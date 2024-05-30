@@ -8,6 +8,9 @@ public class Parameter {
 	private int _recovery_rate;
 	private int _mortality_rate;
 	private int _moving_times;
+	private int _city1_initial_infections;
+	private int _city2_initial_infections;
+	private int _city3_initial_infections;
 
 	public Parameter() {
 		// 建構子
@@ -87,5 +90,29 @@ public class Parameter {
 
 	public void set_moving_times(int moving_times) {
 		this._moving_times = moving_times;
+	}
+	
+	public int get_city1_initial_infections() {
+		return _city1_initial_infections;
+	}
+
+	public void set_city1_initial_infections(int city1_initial_infections) {
+		this._city1_initial_infections = city1_initial_infections;
+	}
+
+	public int get_city2_initial_infections() {
+		return _city2_initial_infections;
+	}
+
+	public void set_city2_initial_infections(int city2_initial_infections) {
+		this._city2_initial_infections = city2_initial_infections;
+	}
+
+	public int get_city3_initial_infections() {
+		return _city3_initial_infections;
+	}
+
+	public void set_city3_initial_infections(int city3_initial_infections) {
+		this._city3_initial_infections = city3_initial_infections;
 	}
 }
