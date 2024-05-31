@@ -1,8 +1,8 @@
 package windows;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,14 +16,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import windows.UI;
 
-public class UI{
+public class UI {
 	// Stage
 	private Stage input_stage = new Stage();
-	
+
 	// 初始化各個輸入框
 	private TextField _total_population_field;
 	private TextField _map1_traffic_field;
@@ -48,21 +45,19 @@ public class UI{
 	private int _city1_initial_infections;
 	private int _city2_initial_infections;
 	private int _city3_initial_infections;
+	private int _days;
 
 	private Label _error_label; // 錯誤提醒
 	private Button _enter_button; // 確認按扭
 
-	private boolean _input_success = false;
-
 	public UI() {
-		_input_success = false;
 	}
-	
+
 	public void start() {
 		input_stage.initModality(Modality.APPLICATION_MODAL);
 		// 使用者輸入視窗
 		VBox user_input_window = paint_window();
-		
+
 		// 確認按鈕
 		_enter_button = new Button("確認");
 		_enter_button.setOnAction(event -> {
@@ -74,10 +69,10 @@ public class UI{
 		input_stage.setScene(input_scene);
 		input_stage.showAndWait();
 	}
-	
+
 	public void showAndWait() {
-        input_stage.showAndWait();
-    }
+		input_stage.showAndWait();
+	}
 
 	private VBox paint_window() {
 		/**
@@ -89,40 +84,40 @@ public class UI{
 		vbox.setAlignment(Pos.TOP_CENTER);
 
 		Label total_population_label = new Label("總人口數（<100000）：");
-		_total_population_field = new TextField();
+		_total_population_field = new TextField("10000");
 
 		Label infection_rate_label = new Label("感染率（%）：");
-		_infection_rate_field = new TextField();
+		_infection_rate_field = new TextField("10");
 
 		Label reinfection_rate_label = new Label("再感染（%）：");
-		_reinfection_rate_field = new TextField();
+		_reinfection_rate_field = new TextField("5");
 
 		Label recovery_rate_label = new Label("康復率（%）：");
-		_recovery_rate_field = new TextField();
+		_recovery_rate_field = new TextField("30");
 
 		Label mortality_rate_label = new Label("死亡率（%）：");
-		_mortality_rate_field = new TextField();
+		_mortality_rate_field = new TextField("10");
 
 		Label days_label = new Label("天數（<1000）：");
-		_days_field = new TextField();
+		_days_field = new TextField("100");
 
 		Label map1_traffic_label = new Label("城市與郊區的流通量（%）：");
-		_map1_traffic_field = new TextField();
+		_map1_traffic_field = new TextField("30");
 
 		Label map2_traffic_label = new Label("郊區與鄉村的流通量（%）：");
-		_map2_traffic_field = new TextField();
+		_map2_traffic_field = new TextField("10");
 
 		Label map3_traffic_label = new Label("城市與鄉村的流通量（%）：");
-		_map3_traffic_field = new TextField();
+		_map3_traffic_field = new TextField("20");
 
 		Label city1_initial_infections_label = new Label("城市的初始感染人數：");
-		_city1_initial_infections_field = new TextField();
+		_city1_initial_infections_field = new TextField("100");
 
 		Label city2_initial_infections_label = new Label("郊區的初始感染人數：");
-		_city2_initial_infections_field = new TextField();
+		_city2_initial_infections_field = new TextField("50");
 
 		Label city3_initial_infections_label = new Label("鄉村的初始感染人數：");
-		_city3_initial_infections_field = new TextField();
+		_city3_initial_infections_field = new TextField("20");
 
 		_error_label = new Label();
 		_error_label.setPadding(new Insets(10));
@@ -163,7 +158,6 @@ public class UI{
 		// Add the grid and error label to this Pane
 		vbox.getChildren().addAll(grid, _error_label);
 
-		
 		return vbox;
 	}
 
@@ -184,19 +178,15 @@ public class UI{
 			_city1_initial_infections = Integer.parseInt(_city1_initial_infections_field.getText());
 			_city2_initial_infections = Integer.parseInt(_city2_initial_infections_field.getText());
 			_city3_initial_infections = Integer.parseInt(_city3_initial_infections_field.getText());
+			_days = Integer.parseInt(_days_field.getText());
 			_error_label.setTextFill(Color.GREEN);
 			_error_label.setText("輸入成功");
-			_input_success = true;
 			input_stage.close();
 		} catch (NumberFormatException e) {
 			highlight_invalid_fields();
 			_error_label.setText("請輸入有效的數字格式");
 			System.err.println("請輸入有效的數字格式");
 		}
-	}
-
-	public boolean get_intput_success() {
-		return _input_success;
 	}
 
 	private void reset_field_borders() {
@@ -288,6 +278,14 @@ public class UI{
 	}
 
 	// Getter and Setter methods
+	public void set_days(int days) {
+		this._days = days;
+	}
+
+	public int get_days() {
+		return this._days;
+	}
+
 	public int get_total_population() {
 		return _total_population;
 	}
