@@ -25,20 +25,20 @@ public class DataChart {
 		_x_axis.setLabel("Days");
 		_y_axis.setLabel("Number of People");
 
-		lineChart.setTitle("Dynamic Population Data");
+		lineChart.setTitle("SIR Model in Epidemiology Analysis");
 
-		_total_series.setName("Total");
+		_total_series.setName("Recover or removed, R(t)");
 //		_total_series.getNode().lookup(".chart-series-line").setStyle("-fx-stroke: blue; -fx-stroke-width: 2px;");
 
-		_infection_series.setName("Infection");
+		_infection_series.setName("infected, I(t)");
 //		_infection_series.getNode().lookup(".chart-series-line").setStyle("-fx-stroke: red; -fx-stroke-width: 2px;");
 
-		_health_series.setName("Health");
+		_health_series.setName("Susceptible, S(t)");
 //		_health_series.getNode().lookup(".chart-series-line").setStyle("-fx-stroke: green; -fx-stroke-width: 2px;");
 
 		lineChart.getData().addAll(_total_series, _infection_series, _health_series);
 
-		Scene scene = new Scene(lineChart, 600, 800);
+		Scene scene = new Scene(lineChart, 600, 600);
 		_stage.setScene(scene);
 		_stage.setTitle("SIR Simulation");
 		_stage.show();
