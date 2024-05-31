@@ -95,7 +95,7 @@ public class UI{
 		_infection_rate_field = new TextField("46");
 
 		Label reinfection_rate_label = new Label("再感染（%）：");
-		_reinfection_rate_field = new TextField("50");
+		_reinfection_rate_field = new TextField("15");
 
 		Label recovery_rate_label = new Label("康復率（%）：");
 		_recovery_rate_field = new TextField("24");

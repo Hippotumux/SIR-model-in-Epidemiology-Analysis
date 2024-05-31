@@ -2,6 +2,7 @@ package assignment;
 
 import windows.Map;
 import windows.UI;
+import windows.DataChart;
 import objects.Human;
 import objects.Parameter;
 
@@ -146,11 +147,13 @@ public class main extends Application {
 			
 			if (h.get_status() == 1) {
 				_infection_amount++;
-			} else if (h.get_status() != 3) {
+			} else if (h.get_status() == 0) {
 				_health_amount ++;
+			} else {
+				_total ++;
 			}
 		}
-		_total = _health_amount + _infection_amount;
+		//_total = _health_amount + _infection_amount;
 	}
 	
 	@Override
@@ -168,8 +171,12 @@ public class main extends Application {
         big_map.start();
         
         PauseTransition delay = new PauseTransition(Duration.seconds(2)); // 延遲2秒
+        
+
 		// 等待 big_map 生成完地圖跑下面這些
 		delay.setOnFinished(subevent -> {
+	        DataChart data_chart = new DataChart();
+	        data_chart.start();
 			create_city_and_people(para, big_map.getmap());
 			init_map();
 			final int[] day = {0};
@@ -200,6 +207,7 @@ public class main extends Application {
                         		total_people.get(i).check_death();
                         	}
                         }
+                        data_chart.update_data((int)(day[0]/day_gap)+1, _total , _infection_amount, _health_amount);
                     }
                     day[0]++;
                 } else {
