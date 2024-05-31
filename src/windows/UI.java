@@ -87,37 +87,37 @@ public class UI {
 		_total_population_field = new TextField("10000");
 
 		Label infection_rate_label = new Label("感染率（%）：");
-		_infection_rate_field = new TextField("10");
+		_infection_rate_field = new TextField("46");
 
 		Label reinfection_rate_label = new Label("再感染（%）：");
-		_reinfection_rate_field = new TextField("5");
+		_reinfection_rate_field = new TextField("15");
 
 		Label recovery_rate_label = new Label("康復率（%）：");
-		_recovery_rate_field = new TextField("30");
+		_recovery_rate_field = new TextField("24");
 
 		Label mortality_rate_label = new Label("死亡率（%）：");
-		_mortality_rate_field = new TextField("10");
+		_mortality_rate_field = new TextField("6");
 
 		Label days_label = new Label("天數（<1000）：");
 		_days_field = new TextField("100");
 
 		Label map1_traffic_label = new Label("城市與郊區的流通量（%）：");
-		_map1_traffic_field = new TextField("30");
+		_map1_traffic_field = new TextField("1");
 
 		Label map2_traffic_label = new Label("郊區與鄉村的流通量（%）：");
-		_map2_traffic_field = new TextField("10");
+		_map2_traffic_field = new TextField("1");
 
 		Label map3_traffic_label = new Label("城市與鄉村的流通量（%）：");
-		_map3_traffic_field = new TextField("20");
+		_map3_traffic_field = new TextField("1");
 
 		Label city1_initial_infections_label = new Label("城市的初始感染人數：");
 		_city1_initial_infections_field = new TextField("100");
 
 		Label city2_initial_infections_label = new Label("郊區的初始感染人數：");
-		_city2_initial_infections_field = new TextField("50");
+		_city2_initial_infections_field = new TextField("1");
 
 		Label city3_initial_infections_label = new Label("鄉村的初始感染人數：");
-		_city3_initial_infections_field = new TextField("20");
+		_city3_initial_infections_field = new TextField("1");
 
 		_error_label = new Label();
 		_error_label.setPadding(new Insets(10));
