@@ -106,11 +106,19 @@ public class Map{
     }
     
     public void plotpeople(int[][] human_map) {
+    	plotmap();
         // 根據地圖數據繪製顏色
         for (int x = 0; x < 900; x++) {
             for (int y = 0; y < 600; y++) {
-                if (human_map[x][y] == 1) pixelWriter.setColor(x, y, Color.GREEN);
-                else if (human_map[x][y] == 2) pixelWriter.setColor(x,  y, Color.RED);
+                if (human_map[x][y] == 1)
+            		for (int dis_x = -1 ; dis_x <= 1 ; dis_x++) 
+            			for (int dis_y = -1 ; dis_y <= 1 ; dis_y++) 
+                        	pixelWriter.setColor(x + dis_x, y + dis_y, Color.GREEN);
+                
+                else if (human_map[x][y] == 2)
+	        		for (int dis_x = -1 ; dis_x <= 1 ; dis_x++) 
+	        			for (int dis_y = -1 ; dis_y <= 1 ; dis_y++)
+	                    	pixelWriter.setColor(x + dis_x, y + dis_y, Color.RED);
             }
         }
     }
