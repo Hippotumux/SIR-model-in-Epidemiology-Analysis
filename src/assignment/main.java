@@ -20,7 +20,7 @@ public class main extends Application {
     public static int[][] human_map = new int[900][600];
     public static int[][] infect_map = new int[900][600];
     public static ArrayList<Human> total_people = new ArrayList<>();
-	public static int _total, _health_amount, _infection_amount;
+	public static int _total, _recover_amount ,_health_amount, _infection_amount;
 	private Timeline timeline;
 	
 	public void get_parameter(Parameter para, UI ui) {
@@ -131,9 +131,9 @@ public class main extends Application {
 	}
 	
 	public void update_map() {
-		_total = 0;
 		_health_amount = 0;
 		_infection_amount = 0;
+		_recover_amount = 0;
 		
 		for (Human h : total_people) {
 			int x = h.get_x();
@@ -149,7 +149,7 @@ public class main extends Application {
 				_infection_amount++;
 			} else if (h.get_status() == 0) {
 				_health_amount ++;
-			} else {
+			} else if (h.get_status() == 2){
 				_total ++;
 			}
 		}
@@ -175,17 +175,18 @@ public class main extends Application {
 
 		// 等待 big_map 生成完地圖跑下面這些
 		delay.setOnFinished(subevent -> {
+			_total = para.get_total_population();
 	        DataChart data_chart = new DataChart();
 	        data_chart.start();
 			create_city_and_people(para, big_map.getmap());
 			init_map();
 			final int[] day = {0};
-            timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
-            	if ((day[0] != 0) && day[0] % day_gap == 0) {
-                	System.out.println("第" + ((int)day[0]/day_gap + 1) + "天");
-                	System.out.println("健康人數" + _health_amount);
-                	System.out.println("病毒人數" + _infection_amount);
-            	}
+            timeline = new Timeline(new KeyFrame(Duration.millis(150), event -> {
+//            	if ((day[0] != 0) && day[0] % day_gap == 0) {
+//                	System.out.println("第" + ((int)day[0]/day_gap + 1) + "天");
+//                	System.out.println("健康人數" + _health_amount);
+//                	System.out.println("病毒人數" + _infection_amount);
+//            	}
                 if (day[0] < total_day) {
                     for (int i = 0; i < total_people.size(); i++) {
                     	total_people.get(i).walk(900, 600, big_map.getmap(), infect_map);
