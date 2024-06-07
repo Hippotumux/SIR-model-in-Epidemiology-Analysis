@@ -16,7 +16,7 @@ public class Map {
 	private Stage primaryStage = new Stage();
 
 	public void start() {
-		primaryStage.setTitle("900x600 Window");
+		primaryStage.setTitle("Map");
 
 		int bl = 3;
 
