@@ -1,3 +1,4 @@
+/* 設定各數據線的顏色和粗細 */
 .chart-series-line.series0 {
     -fx-stroke: blue;
     -fx-stroke-width: 2px;
@@ -18,35 +19,31 @@
     -fx-stroke-width: 2px;
 }
 
+/* 設定各個數據線的圖例符號和顏色 */
 .chart-legend {
     -fx-background-color: transparent;
     -fx-padding: 10px;
     -fx-border-color: transparent;
-    -fx-border-width: 0px;
 }
 
 .chart-legend-item {
     -fx-font-size: 14px;
     -fx-text-fill: black;
-    -fx-padding: 5px;
-}
-
-.chart-legend-item-symbol {
-    -fx-background-radius: 0px;
+    -fx-padding: 1px;
 }
 
 .chart-legend-item-symbol.series0 {
-    -fx-background-color: blue; /* 设置第一个系列的图例项符号颜色为蓝色 */
+    -fx-background-color: blue; 
 }
 
 .chart-legend-item-symbol.series1 {
-    -fx-background-color: red; /* 设置第二个系列的图例项符号颜色为红色 */
+    -fx-background-color: red; 
 }
 
 .chart-legend-item-symbol.series2 {
-    -fx-background-color: green; /* 设置第三个系列的图例项符号颜色为绿色 */
+    -fx-background-color: green; 
 }
 
 .chart-legend-item-symbol.series3 {
-    -fx-background-color: black; /* 设置第三个系列的图例项符号颜色为绿色 */
+    -fx-background-color: black; 
 }

@@ -2,7 +2,6 @@ package objects;
 
 public class Parameter {
 	private int _total_population;
-	private int[] _circulation_volume;
 	private int _infection_rate;
 	private int _reinfection_rate;
 	private int _recovery_rate;
@@ -15,7 +14,6 @@ public class Parameter {
 	public Parameter() {
 		// 建構子
 		this._total_population = 0;
-		this._circulation_volume = new int[] { 0, 0, 0 };
 		this._infection_rate = 0;
 		this._reinfection_rate = 0;
 		this._recovery_rate = 0;
@@ -23,10 +21,9 @@ public class Parameter {
 		this._moving_times = 20;
 	}
 
-	public Parameter(int total_population, int[] circulation_volume, int infection_rate, int reinfection_rate,
-			int recovery_rate, int mortality_rate, int moving_times) {
+	public Parameter(int total_population, int infection_rate, int reinfection_rate, int recovery_rate,
+			int mortality_rate, int moving_times) {
 		this._total_population = total_population;
-		this._circulation_volume = circulation_volume;
 		this._infection_rate = infection_rate;
 		this._reinfection_rate = reinfection_rate;
 		this._recovery_rate = recovery_rate;
@@ -42,14 +39,6 @@ public class Parameter {
 
 	public void set_total_population(int total_population) {
 		this._total_population = total_population;
-	}
-
-	public int[] get_circulation_volume() {
-		return _circulation_volume;
-	}
-
-	public void set_circulation_volume(int[] circulation_volume) {
-		this._circulation_volume = circulation_volume;
 	}
 
 	public int get_infection_rate() {

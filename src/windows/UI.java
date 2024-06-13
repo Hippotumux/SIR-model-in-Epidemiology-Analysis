@@ -23,9 +23,6 @@ public class UI {
 
 	// 初始化各個輸入框
 	private TextField _total_population_field;
-	private TextField _map1_traffic_field;
-	private TextField _map2_traffic_field;
-	private TextField _map3_traffic_field;
 	private TextField _infection_rate_field;
 	private TextField _reinfection_rate_field;
 	private TextField _recovery_rate_field;
@@ -37,7 +34,6 @@ public class UI {
 
 	// 初始化各個輸入框所對應的數值
 	private int _total_population;
-	private int[] _circulation_volume;
 	private int _infection_rate;
 	private int _reinfection_rate;
 	private int _recovery_rate;
@@ -64,13 +60,9 @@ public class UI {
 			handle_enter_button_click();
 		});
 		user_input_window.getChildren().add(_enter_button);
-		Scene input_scene = new Scene(user_input_window, 450, 600);
+		Scene input_scene = new Scene(user_input_window, 450, 450);
 		input_stage.setTitle("User Input");
 		input_stage.setScene(input_scene);
-		input_stage.showAndWait();
-	}
-
-	public void showAndWait() {
 		input_stage.showAndWait();
 	}
 
@@ -83,41 +75,32 @@ public class UI {
 		vbox.setPadding(new Insets(20));
 		vbox.setAlignment(Pos.TOP_CENTER);
 
-		Label total_population_label = new Label("總人口數（<100000）：");
+		Label total_population_label = new Label("總人口數（<=10000）：");
 		_total_population_field = new TextField("10000");
 
 		Label infection_rate_label = new Label("感染率（%）：");
 		_infection_rate_field = new TextField("46");
 
-		Label reinfection_rate_label = new Label("再感染（%）：");
-		_reinfection_rate_field = new TextField("15");
+		Label reinfection_rate_label = new Label("再感染率（%）：");
+		_reinfection_rate_field = new TextField("25");
 
 		Label recovery_rate_label = new Label("康復率（%）：");
-		_recovery_rate_field = new TextField("24");
+		_recovery_rate_field = new TextField("25");
 
 		Label mortality_rate_label = new Label("死亡率（%）：");
-		_mortality_rate_field = new TextField("6");
+		_mortality_rate_field = new TextField("1");
 
 		Label days_label = new Label("天數（<1000）：");
-		_days_field = new TextField("100");
-
-		Label map1_traffic_label = new Label("城市與郊區的流通量（%）：");
-		_map1_traffic_field = new TextField("1");
-
-		Label map2_traffic_label = new Label("郊區與鄉村的流通量（%）：");
-		_map2_traffic_field = new TextField("1");
-
-		Label map3_traffic_label = new Label("城市與鄉村的流通量（%）：");
-		_map3_traffic_field = new TextField("1");
+		_days_field = new TextField("70");
 
 		Label city1_initial_infections_label = new Label("城市的初始感染人數：");
 		_city1_initial_infections_field = new TextField("100");
 
 		Label city2_initial_infections_label = new Label("郊區的初始感染人數：");
-		_city2_initial_infections_field = new TextField("1");
+		_city2_initial_infections_field = new TextField("0");
 
 		Label city3_initial_infections_label = new Label("鄉村的初始感染人數：");
-		_city3_initial_infections_field = new TextField("1");
+		_city3_initial_infections_field = new TextField("0");
 
 		_error_label = new Label();
 		_error_label.setPadding(new Insets(10));
@@ -142,18 +125,12 @@ public class UI {
 		grid.add(_mortality_rate_field, 1, 4);
 		grid.add(days_label, 0, 5);
 		grid.add(_days_field, 1, 5);
-		grid.add(map1_traffic_label, 0, 6);
-		grid.add(_map1_traffic_field, 1, 6);
-		grid.add(map2_traffic_label, 0, 7);
-		grid.add(_map2_traffic_field, 1, 7);
-		grid.add(map3_traffic_label, 0, 8);
-		grid.add(_map3_traffic_field, 1, 8);
-		grid.add(city1_initial_infections_label, 0, 9);
-		grid.add(_city1_initial_infections_field, 1, 9);
-		grid.add(city2_initial_infections_label, 0, 10);
-		grid.add(_city2_initial_infections_field, 1, 10);
-		grid.add(city3_initial_infections_label, 0, 11);
-		grid.add(_city3_initial_infections_field, 1, 11);
+		grid.add(city1_initial_infections_label, 0, 6);
+		grid.add(_city1_initial_infections_field, 1, 6);
+		grid.add(city2_initial_infections_label, 0, 7);
+		grid.add(_city2_initial_infections_field, 1, 7);
+		grid.add(city3_initial_infections_label, 0, 8);
+		grid.add(_city3_initial_infections_field, 1, 8);
 
 		// Add the grid and error label to this Pane
 		vbox.getChildren().addAll(grid, _error_label);
@@ -169,8 +146,6 @@ public class UI {
 		_error_label.setText("");
 		try {
 			_total_population = Integer.parseInt(_total_population_field.getText());
-			_circulation_volume = new int[] { Integer.parseInt(_map1_traffic_field.getText()),
-					Integer.parseInt(_map2_traffic_field.getText()), Integer.parseInt(_map3_traffic_field.getText()) };
 			_infection_rate = Integer.parseInt(_infection_rate_field.getText());
 			_reinfection_rate = Integer.parseInt(_reinfection_rate_field.getText());
 			_recovery_rate = Integer.parseInt(_recovery_rate_field.getText());
@@ -195,9 +170,9 @@ public class UI {
 		 */
 		Border default_border = new TextField().getBorder();
 		_total_population_field.setBorder(default_border);
-		_map1_traffic_field.setBorder(default_border);
-		_map2_traffic_field.setBorder(default_border);
-		_map3_traffic_field.setBorder(default_border);
+//		_map1_traffic_field.setBorder(default_border);
+//		_map2_traffic_field.setBorder(default_border);
+//		_map3_traffic_field.setBorder(default_border);
 		_infection_rate_field.setBorder(default_border);
 		_reinfection_rate_field.setBorder(default_border);
 		_recovery_rate_field.setBorder(default_border);
@@ -219,21 +194,6 @@ public class UI {
 			Integer.parseInt(_total_population_field.getText());
 		} catch (NumberFormatException e) {
 			_total_population_field.setBorder(red_border);
-		}
-		try {
-			Integer.parseInt(_map1_traffic_field.getText());
-		} catch (NumberFormatException e) {
-			_map1_traffic_field.setBorder(red_border);
-		}
-		try {
-			Integer.parseInt(_map2_traffic_field.getText());
-		} catch (NumberFormatException e) {
-			_map2_traffic_field.setBorder(red_border);
-		}
-		try {
-			Integer.parseInt(_map3_traffic_field.getText());
-		} catch (NumberFormatException e) {
-			_map3_traffic_field.setBorder(red_border);
 		}
 		try {
 			Integer.parseInt(_infection_rate_field.getText());
@@ -292,14 +252,6 @@ public class UI {
 
 	public void set_total_population(int total_population) {
 		this._total_population = total_population;
-	}
-
-	public int[] get_circulation_volume() {
-		return _circulation_volume;
-	}
-
-	public void set_circulation_volume(int[] circulation_volume) {
-		this._circulation_volume = circulation_volume;
 	}
 
 	public int get_infection_rate() {

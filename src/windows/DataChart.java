@@ -19,27 +19,25 @@ public class DataChart {
 	private NumberAxis _y_axis;
 	private LineChart<Number, Number> lineChart;
 
-	private int _total_days;
-	private int _total_population;
-
 	public DataChart(int total_days, int total_population) {
 		// TODO Auto-generated constructor stub
-		this._total_days = total_days;
-		this._total_population = total_population;
 		_x_axis = new NumberAxis();
-		_y_axis = new NumberAxis(0, this._total_population + 500, 500);
+		_y_axis = new NumberAxis(0, total_population + 500, 500);
 		lineChart = new LineChart<>(_x_axis, _y_axis);
 	}
 
 	public void start() {
+		/*
+		 * 初始化數據圖，顯示視窗
+		 */
 
 		_x_axis.setLabel("Days");
 		_y_axis.setLabel("Number of People");
 
 		lineChart.setTitle("SIR Model in Epidemiology Analysis");
 
-		_susceptition.setName("Recover or removed, R(t)");
-		_infection_series.setName("infected, I(t)");
+		_susceptition.setName("Recovered, R(t)");
+		_infection_series.setName("Infected, I(t)");
 		_health_series.setName("Susceptible, S(t)");
 		_total_series.setName("Total population");
 
@@ -47,7 +45,7 @@ public class DataChart {
 		lineChart.setLegendVisible(true);
 		lineChart.setCreateSymbols(false);
 
-		Scene scene = new Scene(lineChart, 800, 600);
+		Scene scene = new Scene(lineChart, 450, 450);
 
 		URL chart_style = getClass().getResource("/style/chart_style.css");
 		scene.getStylesheets().add(chart_style.toExternalForm());

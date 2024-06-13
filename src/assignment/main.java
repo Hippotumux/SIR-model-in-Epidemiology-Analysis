@@ -24,7 +24,6 @@ public class main extends Application {
 
 	public void get_parameter(Parameter para, UI ui) {
 		para.set_total_population(ui.get_total_population());
-		para.set_circulation_volume(ui.get_circulation_volume());
 		para.set_infection_rate(ui.get_infection_rate());
 		para.set_reinfection_rate(ui.get_reinfection_rate());
 		para.set_recovery_rate(ui.get_recovery_rate());
