@@ -66,6 +66,10 @@ public class UI {
 		input_stage.showAndWait();
 	}
 
+	public void showAndWait() {
+		input_stage.showAndWait();
+	}
+
 	private VBox paint_window() {
 		/**
 		 * 初始化使用者輸入的視窗
@@ -75,13 +79,13 @@ public class UI {
 		vbox.setPadding(new Insets(20));
 		vbox.setAlignment(Pos.TOP_CENTER);
 
-		Label total_population_label = new Label("總人口數（<100000）：");
+		Label total_population_label = new Label("總人口數（<=10000）：");
 		_total_population_field = new TextField("10000");
 
 		Label infection_rate_label = new Label("感染率（%）：");
 		_infection_rate_field = new TextField("46");
 
-		Label reinfection_rate_label = new Label("再感染率（%）：");
+		Label reinfection_rate_label = new Label("再感染（%）：");
 		_reinfection_rate_field = new TextField("15");
 
 		Label recovery_rate_label = new Label("康復率（%）：");
@@ -170,9 +174,6 @@ public class UI {
 		 */
 		Border default_border = new TextField().getBorder();
 		_total_population_field.setBorder(default_border);
-//		_map1_traffic_field.setBorder(default_border);
-//		_map2_traffic_field.setBorder(default_border);
-//		_map3_traffic_field.setBorder(default_border);
 		_infection_rate_field.setBorder(default_border);
 		_reinfection_rate_field.setBorder(default_border);
 		_recovery_rate_field.setBorder(default_border);
