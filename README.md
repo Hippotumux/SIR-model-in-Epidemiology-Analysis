@@ -24,6 +24,7 @@ SIR模型（SIR Model）是一個用於模擬傳染病在群體中傳播的數�
 
 SIR 模型可以使用 ODE 來描述，方程如下:
 
+$$
 \begin{equation}
 \begin{cases}
 \frac{dS}{dt} = -\beta S I \\
@@ -31,6 +32,7 @@ SIR 模型可以使用 ODE 來描述，方程如下:
 \frac{dR}{dt} = \gamma I
 \end{cases}
 \end{equation}
+$$
 
 其中
 - $\beta$ 是傳染率: 表示易感者和感染者接觸時的感染率
@@ -63,13 +65,14 @@ SIR 模型可以用來研究各種傳染病的傳播，例如 COVID-19，有助�
 
 ### 數學表示
 
+$$
 \begin{cases}
 \frac{dS}{dt} = -\beta S I + \delta R \\
 \frac{dI}{dt} = \beta S I - \gamma I - \mu I \\
 \frac{dR}{dt} = \gamma I - \delta R \\
 \frac{dD}{dt} = \mu I
 \end{cases}
-
+$$
 
 其中：
  $\mu$ 表示感染者的死亡率，$\delta$ 表示康復者再次變為易感者的速率。
